@@ -10,3 +10,6 @@ build
 
 # Database
 db/*.db
+
+# Tests
+coverage
