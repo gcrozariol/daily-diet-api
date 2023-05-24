@@ -1,12 +1,12 @@
 import { randomUUID } from 'crypto'
 import { FastifyInstance } from 'fastify'
-import { knex } from '../database'
+import { knex } from '../../database'
 import {
   validateCreateMealBody,
   validateIdFromParams,
   validateUpdateMealBody,
 } from './meals.validation'
-import { checkSessionIdExists } from '../middleware/check-session-id-exists'
+import { checkSessionIdExists } from '../../middleware/check-session-id-exists'
 
 /**
  * Create meal

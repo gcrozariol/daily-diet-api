@@ -13,14 +13,12 @@ export async function checkSessionIdExists(
 export function getSessionId(req: FastifyRequest, res: FastifyReply) {
   let { sessionId } = req.cookies
 
-  if (!sessionId) {
-    sessionId = randomUUID()
+  sessionId = randomUUID()
 
-    res.cookie('sessionId', sessionId, {
-      path: '/',
-      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
-    })
-  }
+  res.cookie('sessionId', sessionId, {
+    path: '/',
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+  })
 
   return sessionId
 }

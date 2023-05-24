@@ -1,7 +1,7 @@
 import { FastifyInstance } from 'fastify'
 import { validateCreateUser } from './users.validation'
-import { knex } from '../database'
-import { getSessionId } from '../middleware/check-session-id-exists'
+import { knex } from '../../database'
+import { getSessionId } from '../../middleware/check-session-id-exists'
 
 /**
  * Create a user
