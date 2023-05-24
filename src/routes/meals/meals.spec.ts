@@ -18,13 +18,10 @@ describe('Meals routes', () => {
   })
 
   it('should be able to create a meal', async () => {
-    const user = await request(app.server)
-      .post('/users')
-      .send({
-        name: 'Guilherme',
-        email: 'guicrozariol@gmail.com',
-      })
-      .expect(201)
+    const user = await request(app.server).post('/users').send({
+      name: 'Guilherme',
+      email: 'guicrozariol@gmail.com',
+    })
 
     const cookies = user.get('set-cookie')
 
@@ -41,13 +38,10 @@ describe('Meals routes', () => {
   })
 
   it("should be able to retrieve all users' meals", async () => {
-    const user = await request(app.server)
-      .post('/users')
-      .send({
-        name: 'Guilherme',
-        email: 'guicrozariol@gmail.com',
-      })
-      .expect(201)
+    const user = await request(app.server).post('/users').send({
+      name: 'Guilherme',
+      email: 'guicrozariol@gmail.com',
+    })
 
     const cookies = user.get('set-cookie')
 
@@ -67,13 +61,10 @@ describe('Meals routes', () => {
   })
 
   it('should be able to retrieve a meal by its id', async () => {
-    const user = await request(app.server)
-      .post('/users')
-      .send({
-        name: 'Guilherme',
-        email: 'guicrozariol@gmail.com',
-      })
-      .expect(201)
+    const user = await request(app.server).post('/users').send({
+      name: 'Guilherme',
+      email: 'guicrozariol@gmail.com',
+    })
 
     const cookies = user.get('set-cookie')
 
@@ -100,13 +91,10 @@ describe('Meals routes', () => {
   })
 
   it('should be able to update a meal by its id', async () => {
-    const user = await request(app.server)
-      .post('/users')
-      .send({
-        name: 'Guilherme',
-        email: 'guicrozariol@gmail.com',
-      })
-      .expect(201)
+    const user = await request(app.server).post('/users').send({
+      name: 'Guilherme',
+      email: 'guicrozariol@gmail.com',
+    })
 
     const cookies = user.get('set-cookie')
 
@@ -133,13 +121,10 @@ describe('Meals routes', () => {
   })
 
   it('should be able to delete a meal by its id', async () => {
-    const user = await request(app.server)
-      .post('/users')
-      .send({
-        name: 'Guilherme',
-        email: 'guicrozariol@gmail.com',
-      })
-      .expect(201)
+    const user = await request(app.server).post('/users').send({
+      name: 'Guilherme',
+      email: 'guicrozariol@gmail.com',
+    })
 
     const cookies = user.get('set-cookie')
 
@@ -157,5 +142,26 @@ describe('Meals routes', () => {
       .delete(`/meals/${meal.body.id}`)
       .set('Cookie', cookies)
       .expect(204)
+  })
+
+  it("should be able to get user's meals metrics", async () => {
+    const user = await request(app.server).post('/users').send({
+      name: 'Guilherme',
+      email: 'guicrozariol@gmail.com',
+    })
+
+    const cookies = user.get('set-cookie')
+
+    await request(app.server).post('/meals').set('Cookie', cookies).send({
+      name: 'Cheeseburger',
+      description: 'Cheeseburger description',
+      is_diet: false,
+      date: new Date(),
+    })
+
+    await request(app.server)
+      .get(`/meals/metrics`)
+      .set('Cookie', cookies)
+      .expect(200)
   })
 })

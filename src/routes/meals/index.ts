@@ -1,6 +1,6 @@
+import { knex } from '../../database'
 import { randomUUID } from 'crypto'
 import { FastifyInstance } from 'fastify'
-import { knex } from '../../database'
 import {
   validateCreateMealBody,
   validateIdFromParams,
@@ -123,6 +123,74 @@ async function deleteMeal(app: FastifyInstance) {
 }
 
 /**
+ * Get meals' metrics
+ * @param {FastifyInstance} app Fastify Instance
+ */
+async function getMetrics(app: FastifyInstance) {
+  app.get(
+    '/metrics',
+    { preHandler: [checkSessionIdExists] },
+    async (req, res) => {
+      const meals = await knex('meals')
+        .where('user_id', req.cookies.sessionId)
+        .select()
+
+      // Get meals on and off a diet
+
+      const mealsOnDiet = meals.filter((meal) => +meal.is_diet === 1)
+      const mealsOffDiet = meals.filter((meal) => +meal.is_diet === 0)
+      let bestSequenceOnDiet = null
+
+      if (mealsOnDiet.length > 0) {
+        // Get total meals on diet considering the date
+        // This will return a record i.e. { date: total_meals, ... }
+
+        const totalMealsOnDietPerDay = mealsOnDiet.reduce((prev, current) => {
+          const date = new Date(current.date).toLocaleDateString()
+          prev[date as keyof number] = (prev[date] || 0) + 1
+          return prev
+        }, {} as Record<string, number>)
+
+        // Then, we sort the values within the object considering
+        // the highest amount of meals per date.
+        // This is going to result on the same data pattern of the
+        // totalMealsOnDietPerDay method, however the first record is
+        // the one we're using as it contains the highest amount of
+        // meals on a diet
+
+        const sortedMealsDescObj = Object.fromEntries(
+          Object.entries(totalMealsOnDietPerDay).sort(([, a], [, b]) => b - a),
+        )
+
+        // Now, we transform the records into an array, so we can
+        // get the first position of it
+
+        const sortedMealsDescArr = []
+
+        for (const date in sortedMealsDescObj) {
+          sortedMealsDescArr.push({
+            date,
+            amount_of_meals: sortedMealsDescObj[date],
+          })
+        }
+
+        // Lastly, set a constant with the values we want to send
+        // back to the client
+
+        bestSequenceOnDiet = sortedMealsDescArr[0]
+      }
+
+      res.status(200).send({
+        total_meals: meals.length,
+        meals_on_diet: mealsOnDiet.length,
+        meals_off_diet: mealsOffDiet.length,
+        best_sequence_on_diet: bestSequenceOnDiet,
+      })
+    },
+  )
+}
+
+/**
  * Meals routes
  * @param {FastifyInstance} app Fastify Instance
  */
@@ -132,4 +200,5 @@ export async function mealsRoutes(app: FastifyInstance) {
   getMealsByUserId(app)
   updateMeal(app)
   deleteMeal(app)
+  getMetrics(app)
 }

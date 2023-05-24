@@ -26,15 +26,15 @@ This challenge is about creating a RESTful API to control a daily diet. Here are
 
 [X] List a single meal
 
-[ ] Get metrics of a user by returning the following:
+[X] Get metrics of a user by returning the following:
 
-&nbsp;&nbsp;&nbsp;[ ] Amount of meals
+&nbsp;&nbsp;&nbsp;[X] Amount of meals
 
-&nbsp;&nbsp;&nbsp;[ ] Amount of meals on a diet
+&nbsp;&nbsp;&nbsp;[X] Amount of meals on a diet
 
-&nbsp;&nbsp;&nbsp;[ ] Amount of meals off a diet
+&nbsp;&nbsp;&nbsp;[X] Amount of meals off a diet
 
-&nbsp;&nbsp;&nbsp;[ ] Best day on a diet
+&nbsp;&nbsp;&nbsp;[X] Best day on a diet
 
 [X] The user can only view, edit and delete meals which he created.
 
@@ -45,3 +45,50 @@ Run the following command to start the project:
 <code>npm run dev</code>
 
 Now, with the server running locally using the port 3333, we are ready to make some requests.
+
+### 🛜 Making Requests
+
+* **<span style="color:#7758E1">Create a user</span>**
+  * Method &nbsp; &nbsp;→&nbsp; **<span style="color:#98CC41">POST</span>**
+  * Endpoint &nbsp;→&nbsp; http://localhost:3333/users
+  * Body request must contain both **name** and **email** parameters. The **avatar** parameter is optional.
+<br>
+
+* **<span style="color:#7758E1">Create a meal</span>**
+  * Method &nbsp; &nbsp;→&nbsp; **<span style="color:#98CC41">POST</span>**
+  * Endpoint &nbsp;→&nbsp; http://localhost:3333/meals
+  * Body request must contain **name**, **description**, **is_diet**, and **date** parameters.
+<br>
+
+* **<span style="color:#7758E1">Get meal by id</span>**
+  * Method &nbsp; &nbsp;→&nbsp; **<span style="color:#8C82C7">GET</span>**
+  * Endpoint &nbsp;→&nbsp; http://localhost:3333/meals/:id
+<br>
+
+* **<span style="color:#7758E1">Get all meals</span>**
+  * Method &nbsp; &nbsp;→&nbsp; **<span style="color:#8C82C7">GET</span>**
+  * Endpoint &nbsp;→&nbsp; http://localhost:3333/meals
+<br>
+
+* **<span style="color:#7758E1">Get meals' metrics</span>**
+  * Method &nbsp; &nbsp;→&nbsp; **<span style="color:#8C82C7">GET</span>**
+  * Endpoint &nbsp;→&nbsp; http://localhost:3333/meals/metrics
+<br>
+
+* **<span style="color:#7758E1">Update a meal</span>**
+  * Method &nbsp; &nbsp;→&nbsp; **<span style="color:#DF9331">PUT</span>**
+  * Endpoint &nbsp;→&nbsp; http://localhost:3333/meals/:id
+  * Body request must contain at least one of the following parameters **name**, **description**, **is_diet**, and **date**.
+<br>
+
+* **<span style="color:#7758E1">Delete a meal</span>**
+  * Method &nbsp; &nbsp;→&nbsp; **<span style="color:#CE5337">DELETE</span>**
+  * Endpoint &nbsp;→&nbsp; http://localhost:3333/meals/:id
+<br>
+
+### 🧪 Running the App's Tests
+
+Run the following command to run the tests:
+
+<code>npm test</code>
+
