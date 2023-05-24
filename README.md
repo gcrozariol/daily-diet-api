@@ -4,27 +4,27 @@
 
 This challenge is about creating a RESTful API to control a daily diet. Here are the application's use cases:
 
-[ ] Create a user
+[X] Create a user
 
-[ ] Idenfify the user when making a request
+[X] Idenfify the user when making a request
 
-[ ] Create a meal related to a user with the following informations: 
+[X] Create a meal related to a user with the following informations: 
 
-&nbsp;&nbsp;&nbsp;[ ] Name 
+&nbsp;&nbsp;&nbsp;[X] Name 
 
-&nbsp;&nbsp;&nbsp;[ ] Description
+&nbsp;&nbsp;&nbsp;[X] Description
 
-&nbsp;&nbsp;&nbsp;[ ] Date and time
+&nbsp;&nbsp;&nbsp;[X] Date and time
 
-&nbsp;&nbsp;&nbsp;[ ] Let the user select if this meal is on a diet or not
+&nbsp;&nbsp;&nbsp;[X] Let the user select if this meal is on a diet or not
 
-[ ] Update one or more fields of a meal
+[X] Update one or more fields of a meal
 
-[ ] Delete a meal
+[X] Delete a meal
 
-[ ] List all meals of a user
+[X] List all meals of a user
 
-[ ] List a single meal
+[X] List a single meal
 
 [ ] Get metrics of a user by returning the following:
 
@@ -36,7 +36,7 @@ This challenge is about creating a RESTful API to control a daily diet. Here are
 
 &nbsp;&nbsp;&nbsp;[ ] Best day on a diet
 
-[ ] The user can only view, edit and delete meals which he created.
+[X] The user can only view, edit and delete meals which he created.
 
 ### 🎯 Running the App
 

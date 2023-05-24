@@ -13,11 +13,11 @@ describe('Users routes', () => {
   })
 
   beforeEach(() => {
-    execSync('npm run knex:rollback')
+    execSync('npm run knex:rollback -- all')
     execSync('npm run knex:latest')
   })
 
-  it('should create a user', async () => {
+  it('should be able to create a user', async () => {
     await request(app.server)
       .post('/users')
       .send({

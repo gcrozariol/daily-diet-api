@@ -1,18 +1,19 @@
-import { randomUUID } from 'crypto'
 import { FastifyInstance } from 'fastify'
 import { validateCreateUser } from './users.validation'
 import { knex } from '../database'
+import { getSessionId } from '../middleware/check-session-id-exists'
 
 /**
  * Create a user
  * @param {FastifyInstance} app Fastify Instance
  */
-async function createUser(app: FastifyInstance) {
+export async function createUser(app: FastifyInstance) {
   app.post('/', async (req, res) => {
     const body = validateCreateUser(req)
 
     if (body.success) {
-      const data = { id: randomUUID(), ...body.data }
+      const sessionId = getSessionId(req, res)
+      const data = { id: sessionId, ...body.data }
       await knex('users').insert(data)
       res.status(201).send(data)
     } else {
