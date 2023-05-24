@@ -1,14 +1,7 @@
-import { fastify } from 'fastify'
-
-const app = fastify()
-
-app.get('/', (req, res) => {
-  res.status(200).send({
-    message: "This is the second Rocketseat's Node.js project",
-  })
-})
+import { app } from './app'
+import { env } from './env'
 
 app
-  .listen({ port: 3333 })
+  .listen({ port: env.DATABASE_PORT })
   .then(() => console.log('HTTP server running on port 3333 🚀'))
-  .catch(() => console.log('Something went wrong.'))
+  .catch((e) => console.log('Something went wrong: ', e.message))
