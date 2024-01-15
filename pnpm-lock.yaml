@@ -29,8 +29,8 @@ devDependencies:
     specifier: ^2.1.0
     version: 2.1.0(eslint@8.56.0)(typescript@5.3.3)
   '@types/supertest':
-    specifier: ^2.0.12
-    version: 2.0.16
+    specifier: ^6.0.2
+    version: 6.0.2
   eslint:
     specifier: ^8.53.0
     version: 8.56.0
@@ -38,8 +38,8 @@ devDependencies:
     specifier: ^5.1.6
     version: 5.1.7
   supertest:
-    specifier: ^6.3.3
-    version: 6.3.3
+    specifier: ^6.3.4
+    version: 6.3.4
   tsup:
     specifier: ^7.2.0
     version: 7.3.0(typescript@5.3.3)
@@ -855,9 +855,10 @@ packages:
       '@types/node': 20.10.7
     dev: true
 
-  /@types/supertest@2.0.16:
-    resolution: {integrity: sha512-6c2ogktZ06tr2ENoZivgm7YnprnhYE4ZoXGMY+oA7IuAf17M8FWvujXZGmxLv8y0PTyts4x5A+erSwVUFA8XSg==}
+  /@types/supertest@6.0.2:
+    resolution: {integrity: sha512-137ypx2lk/wTQbW6An6safu9hXmajAifU/s7szAHLN/FeIm5w7yR0Wkl9fdJMRSHwOn4HLAI0DaB2TOORuhPDg==}
     dependencies:
+      '@types/methods': 1.1.4
       '@types/superagent': 8.1.1
     dev: true
 
@@ -4459,8 +4460,8 @@ packages:
       - supports-color
     dev: true
 
-  /supertest@6.3.3:
-    resolution: {integrity: sha512-EMCG6G8gDu5qEqRQ3JjjPs6+FYT1a7Hv5ApHvtSghmOFJYtsU5S+pSb6Y2EUeCEY3CmEL3mmQ8YWlPOzQomabA==}
+  /supertest@6.3.4:
+    resolution: {integrity: sha512-erY3HFDG0dPnhw4U+udPfrzXa4xhSG+n4rxfRuZWCUvjFWwKl+OxWf/7zk50s84/fAAs7vf5QAb9uRa0cCykxw==}
     engines: {node: '>=6.4.0'}
     dependencies:
       methods: 1.1.2

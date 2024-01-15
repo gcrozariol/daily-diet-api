@@ -28,10 +28,10 @@
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.1.0",
-    "@types/supertest": "^2.0.12",
+    "@types/supertest": "^6.0.2",
     "eslint": "^8.53.0",
     "sqlite3": "^5.1.6",
-    "supertest": "^6.3.3",
+    "supertest": "^6.3.4",
     "tsup": "^7.2.0",
     "tsx": "^3.12.7",
     "typescript": "^5.1.6",
